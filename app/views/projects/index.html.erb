@@ -3,6 +3,6 @@
 <h2>Projects</h2>
 <ul>
   <% @projects.each do |project| %>
-    <li><%= link_to project.name, project %></li>
+    <li><%= link_to project.name, project %> <%= project.description %> <%= project.user.email %></li>
   <% end %>
 </ul>
