@@ -25,6 +25,7 @@ group :assets do
 end
 
 gem 'jquery-rails', '2.0.2'
+gem 'devise', '2.1.0.rc'
 
 group :test, :development do
 	gem 'rspec-rails', '~> 2.11'
