@@ -23,4 +23,5 @@ feature 'Creating Projects' do
     page.should have_content("Project has not been created.")
     page.should have_content("Name can't be blank")
   end
- end
+
+end

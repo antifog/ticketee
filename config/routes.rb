@@ -50,8 +50,8 @@ Ticketee::Application.routes.draw do
   # just remember to delete public/index.html.
   root :to => 'projects#index'
 
-  Ticketee::Application.routes.draw do
-    resources :projects
+  resources :projects do
+    resources :tickets
   end
 
   # See how all your routes lay out with "rake routes"
