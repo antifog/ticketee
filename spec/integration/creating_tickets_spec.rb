@@ -1,9 +1,15 @@
 require 'spec_helper'
 
 feature "Creating Tickets" do
+  let!(:user) { Factory(:confirmed_user) }
+  let!(:project) do
+    project = Factory(:project, :name => "Internet Explorer")
+    project.update_attribute(:user, user)
+    project
+  end
 
   before do
-    Factory(:project, :name => "Internet Explorer")
+    sign_in_as!(user)
     visit '/'
     click_link "Internet Explorer"
     click_link "New Ticket"

@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
 
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :find_project, :only => [:show,
                                          :edit,
                                          :update,
@@ -15,6 +16,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params[:project])
+    @project.user = current_user
     if @project.save
       flash[:notice] = "Project has been created."
       redirect_to @project

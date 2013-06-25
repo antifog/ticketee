@@ -1,8 +1,15 @@
 require 'spec_helper'
 
 feature "Editing Projects" do
+  let!(:user) { Factory(:confirmed_user) }
+  let!(:project) do
+    project = Factory(:project, :name => "TextMate 2")
+    project.update_attribute(:user, user)
+    project
+  end
+
   before do
-    Factory(:project, :name => "TextMate 2")
+    sign_in_as!(user)
     visit "/"
     click_link "TextMate 2"
     click_link "Edit Project"
