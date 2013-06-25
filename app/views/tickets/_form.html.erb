@@ -10,5 +10,9 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </p>
+  <p>
+    <%= f.label :state_id %>
+    <%= f.select :state_id , @states.map { |s| [s.name, s.id] } , :selected => @ticket.state_id %>
+  </p>
   <%= f.submit %>
 <% end %>

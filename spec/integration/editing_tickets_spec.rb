@@ -19,6 +19,7 @@ feature "Editing tickets" do
 
   scenario "Updating a ticket" do
     fill_in "Title", :with => "Make it really shiny!"
+    select "Pending", :from => "State"
     click_button "Update Ticket"
     page.should have_content "Ticket has been updated."
     within("#ticket h2") do
@@ -29,6 +30,7 @@ feature "Editing tickets" do
 
   scenario "Updating a ticket with invalid information" do
     fill_in "Title", :with => ""
+    select "Pending", :from => "State"
     click_button "Update Ticket"
     page.should have_content("Ticket has not been updated.")
   end

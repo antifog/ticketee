@@ -7,6 +7,7 @@ feature "Creating Tickets" do
     project.update_attribute(:user, user)
     project
   end
+  Factory(:state, :name => "Pending")
 
   before do
     sign_in_as!(user)
@@ -18,6 +19,7 @@ feature "Creating Tickets" do
   scenario "Creating a ticket" do
     fill_in "Title", :with => "Non-standards compliance"
     fill_in "Description", :with => "My pages are ugly!"
+    select "Pending", :from => "State"
     click_button "Create Ticket"
     page.should have_content("Ticket has been created.")
   end
@@ -32,6 +34,7 @@ feature "Creating Tickets" do
   scenario "Description must be longer than 10 characters" do
     fill_in "Title", :with => "Non-standards compliance"
     fill_in "Description", :with => "it sucks"
+    select "Pending", :from => "State"
     click_button "Create Ticket"
     page.should have_content("Ticket has not been created.")
     page.should have_content("Description is too short")
